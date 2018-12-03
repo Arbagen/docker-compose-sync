@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  sync_r:
+    container_name: sync_r
+    build:
+      context: .
+    working_dir: /home/sync
+    volumes:
+      - "../volume:/home/sync"
+    depends_on: 
+      - sync_mysql
+    links:
+      - sync_mysql
+    tty: true
+  sync_mysql:
+    container_name: sync_mysql
+    image: mysql:5.6
+    volumes:
+      - "../mysql/.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+    ports:
+      - 3306:3306

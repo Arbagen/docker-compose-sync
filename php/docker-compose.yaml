@@ -1,0 +1,9 @@
+version: '3.1'
+
+services:
+  sync_php:
+    container_name: sync_php
+    image: php:7.2-fpm
+    working_dir: /home/sync
+    volumes:
+      - "../volume:/home/sync"
